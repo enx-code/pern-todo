@@ -17,14 +17,34 @@ app.post("/todos", async (req, res) => {
       [description]
     );
 
-    res.json(newTodo.rows[0]);
-    
-
+    res.json(newTodo .rows[0]);
+    // console.log("BODY RECEIVED:", req.body);
+    // res.status(200).json("Todo created just now");
   } catch (err) {
     console.error("ERROR:", err.message);
     res.status(500).json("Server error");
   }
 })
+
+
+// get all todos
+
+app.get("/todos", async (req, res) => {
+  try {
+    const allTodos = await pool.query("SELECT * FROM todo");
+    res.json(allTodos.rows);
+  } catch (err) {
+    console.error("ERROR:", err.message);
+    res.status(500).json("Server error");
+  }
+});
+
+// get a todo
+
+// update a todo
+
+// delete a todo
+
 
 
 const PORT = 8000;
