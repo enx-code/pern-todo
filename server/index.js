@@ -73,7 +73,19 @@ app.put("/todos/:id", async (req, res) => {
 }); 
 // delete a todo
 
+app.delete("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [
+      id
+    ]);
 
+    res.json("Todo was deleted");
+  } catch (err) {
+    console.error("ERROR:", err.message);
+    res.status(500).json("Server error");
+  }
+});
 
 
 
