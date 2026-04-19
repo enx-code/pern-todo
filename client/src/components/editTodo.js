@@ -34,7 +34,6 @@ const EditTodo = ({ todo }) => {
         Edit
       </button>
 
-      {/* id = id */}
       <div
         className="modal"
         id={`id${todo.todo_id}`}
